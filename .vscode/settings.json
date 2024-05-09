@@ -4,6 +4,7 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "c:\\Users\\Henrique S\\Desktop\\jlayer-master\\jlayer-master.jar",
-        "APIS/ListaPlaylistAPI.jar"
+        "APIS/ListaPlaylistAPI.jar",
+        "ListaPlaylistAPI.jar"
     ]
 }
