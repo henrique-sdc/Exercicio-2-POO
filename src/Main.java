@@ -19,12 +19,24 @@ public class Main {
                     switch (opcao) {
                         case 1:
                             String nomeCliente = JOptionPane.showInputDialog("Nome do Cliente:");
-                            boolean pagamentoAVista = JOptionPane.showConfirmDialog(null,
-                                    "Pagamento à vista?") == JOptionPane.YES_OPTION;
-                            Cliente cliente = new PessoaFisica(nomeCliente, "CPF"); 
+                            boolean pagamentoAVista = JOptionPane.showConfirmDialog(null, "Pagamento à vista?") == JOptionPane.YES_OPTION;
+
+                            Cliente cliente;
+                            if (/* lógica para determinar se o cliente é pessoa física ou jurídica */) {
+                                cliente = new PessoaFisica(nomeCliente, "CPF");
+                            } else {
+                                cliente = new PessoaJuridica(nomeCliente, "CNPJ");
+                            }
+
                             Reserva novaReserva = new Reserva(cliente, pagamentoAVista);
-                            reservas.adicionarReserva(novaReserva);
-                            JOptionPane.showMessageDialog(null, "Reserva adicionada com sucesso.");
+
+                            if (reservas.getQuantidadeReservas() < 6) {
+                                reservas.adicionarReserva(novaReserva);
+                                JOptionPane.showMessageDialog(null, "Reserva adicionada com sucesso.");
+                            } else {
+                                reservas.adicionarListaDeEspera(novaReserva);
+                                JOptionPane.showMessageDialog(null, "Você está na lista de espera.");
+                            }
                             break;
                         case 2:
                             // Implementação depende da maneira como Reserva é comparada e buscada
