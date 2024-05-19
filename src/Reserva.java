@@ -2,6 +2,7 @@ public class Reserva implements Pagamento {
     private Cliente cliente;
     private boolean pagamentoAVista;
     private final static double valor = 3200.00;
+    private final static double descontoAVista = 0.1;
 
     public Reserva(Cliente cliente, boolean pagamentoAVista) {
         this.cliente = cliente;
@@ -12,14 +13,10 @@ public class Reserva implements Pagamento {
         return cliente;
     }
 
-    public boolean isPagamentoAVista() {
-        return pagamentoAVista;
-    }
-
     @Override
     public double calcularPagamento() {
         if (pagamentoAVista) {
-            return valor * 0.9;
+            return valor - (valor * descontoAVista);
         } else {
             return valor;
         }
@@ -27,7 +24,8 @@ public class Reserva implements Pagamento {
 
     @Override
     public String toString() {
+        String tipoCliente = cliente instanceof PessoaFisica ? "Pessoa Física" : "Pessoa Jurídica";
         String tipoPagamento = pagamentoAVista ? "à vista" : "parcelado";
-        return "Reserva para o cliente: " + cliente + "\nTipo de pagamento: " + tipoPagamento + "\nValor: R$ " + calcularPagamento();
+        return tipoCliente + " - " + cliente + "\nPagamento: " + tipoPagamento + "\nValor: R$ " + String.format("%.2f", calcularPagamento());
     }
 }
