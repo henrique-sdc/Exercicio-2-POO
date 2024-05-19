@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SistemaReservas<T extends Reserva> { 
-    public static final int MAX_RESERVAS = 6;
+    public static final int maxReservas = 6;
     private List<T> reservas; 
     private List<T> listaDeEspera;
 
@@ -12,7 +12,7 @@ public class SistemaReservas<T extends Reserva> {
     }
 
     public void adicionarReserva(T reserva) { 
-        if (reservas.size() < MAX_RESERVAS) {
+        if (reservas.size() < maxReservas) {
             reservas.add(reserva);
         } else {
             listaDeEspera.add(reserva);

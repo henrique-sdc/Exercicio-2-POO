@@ -7,7 +7,7 @@ public class Main {
         SistemaReservas<Reserva> reservas = new SistemaReservas<>();
 
         String menu = "";
-        menu += "Restaurante SABOR SOFISTICADO \n\n" + "1. Reservar mesa\n2. Pesquisar reservar\n3 - Imprimir reservas\n4. Imprimir lista de espera\n5. Cancelar reserva\n6. Finalizar";
+        menu += "Restaurante SABOR SOFISTICADO \n\n" + "1. Reservar mesa\n2. Pesquisar reserva\n3 - Imprimir reservas\n4. Imprimir lista de espera\n5. Cancelar reserva\n6. Finalizar";
         int opcao = 0;
 
         do {
@@ -38,7 +38,7 @@ public class Main {
                             Reserva novaReserva = new Reserva(cliente, pagamentoAVista);
                             reservas.adicionarReserva(novaReserva);
 
-                            if (reservas.getTotalReservas() <= SistemaReservas.MAX_RESERVAS) {
+                            if (reservas.getTotalReservas() <= SistemaReservas.maxReservas) {
                                 showMessageDialog(null, "Reserva adicionada com sucesso. Mesa reservada!");
                             } else {
                                 showMessageDialog(null, "Reserva adicionada com sucesso. Você está na lista de espera.");
