@@ -38,19 +38,29 @@ public class SistemaReservas<T extends Reserva> {
     }
 
     public boolean cancelarReserva(String cpfCnpj) {
-        Reserva reserva = pesquisarReserva(cpfCnpj);
-        if (reserva != null) {
-            if (reservas.contains(reserva)) {
-                reservas.remove(reserva);
+        for (int i = 0; i < reservas.size(); i++) {
+            Reserva reserva = reservas.get(i);
+            if (reserva.getCliente() instanceof PessoaFisica && ((PessoaFisica) reserva.getCliente()).getCpf().equals(cpfCnpj) ||
+                reserva.getCliente() instanceof PessoaJuridica && ((PessoaJuridica) reserva.getCliente()).getCnpj().equals(cpfCnpj)) {
+                reservas.remove(i); // Remove pelo índice
+    
                 if (listaDeEspera.size() > 0) {
-                    reservas.add(listaDeEspera.remove(0));
+                    reservas.add(listaDeEspera.remove(0)); // Aqui ainda usa remove, mas é uma operação rápida na primeira posição
                 }
-            } else {
-                listaDeEspera.remove(reserva);
+                return true;
             }
-            return true;
         }
-        return false;
+    
+        for (int i = 0; i < listaDeEspera.size(); i++) {
+            Reserva reserva = listaDeEspera.get(i);
+            if (reserva.getCliente() instanceof PessoaFisica && ((PessoaFisica) reserva.getCliente()).getCpf().equals(cpfCnpj) ||
+                reserva.getCliente() instanceof PessoaJuridica && ((PessoaJuridica) reserva.getCliente()).getCnpj().equals(cpfCnpj)) {
+                listaDeEspera.remove(i); // Remove pelo índice
+                return true;
+            }
+        }
+    
+        return false; 
     }
 
     public String listarReservas() {
