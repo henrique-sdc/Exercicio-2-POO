@@ -1,5 +1,12 @@
 import static javax.swing.JOptionPane.*;
 import javax.swing.JOptionPane;
+
+import reserva.Cliente;
+import reserva.PessoaFisica;
+import reserva.PessoaJuridica;
+import reserva.Reserva;
+import reserva.SistemaReservas;
+
 import static java.lang.Integer.parseInt;
 
 public class Main {

@@ -1,3 +1,5 @@
+package reserva;
+
 public abstract class Cliente {
     protected String nome;
 

@@ -1,3 +1,5 @@
+package reserva;
+
 public class Reserva implements Pagamento {
     private Cliente cliente;
     private boolean pagamentoAVista;
